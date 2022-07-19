@@ -1,0 +1,25 @@
+FROM alpine:3.16 AS build
+
+RUN apk update && \
+	apk --no-cache add wget build-base pkgconfig linux-headers ctags libretls-dev curl-dev sqlite-dev
+
+RUN wget -O pounce.tar.gz https://git.causal.agency/pounce/snapshot/pounce-master.tar.gz && \
+	mkdir /pounce && tar -xv --strip-components 1 -C /pounce -f pounce.tar.gz  && \
+	cd /pounce && \
+	./configure --prefix='/app' --enable-notify --enable-palaver && cat config.mk && make && make install
+
+
+
+FROM alpine:3.16
+
+RUN apk update && \
+    apk --no-cache add libretls curl sqlite-libs
+
+COPY --from=build /app/bin /usr/local/bin
+COPY --from=build /app/man /usr/local/man
+
+VOLUME /config
+
+EXPOSE 6697
+
+CMD ["pounce", "/config"]
