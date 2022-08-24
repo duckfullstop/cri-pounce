@@ -13,7 +13,7 @@ This is a CRI / Docker-compliant image containing Pounce as well as the `pounce-
 ### pounce
 **Friendly reminder:** Pounce requires that TLS be configured for communication, even if you're using a reverse proxy - you cannot force it to start without a certificate!
 
-The image runs `pounce /config/pounce.conf` by default, so mounting your config there (with `-v my_pounce_config:/config/pounce.conf`), as well as any necessary certificates (something like `-v cert.pem:/config/cert.pem -v cert.key:/config/cert.key`) should get you started.
+The image runs `pounce /config` by default, so mounting your config there (with `-v my_pounce_config:/config/pounce.conf`), as well as any necessary certificates (something like `-v cert.pem:/config/cert.pem -v cert.key:/config/cert.key`) should get you started.
 
 You should run one instancce of the container per server connection.
 
@@ -24,3 +24,9 @@ See [pounce(1)](https://git.causal.agency/pounce/about/pounce.1) for more inform
 Run another instance of the container with the desired command & arguments, eg `pounce-palaver pounce-host`.
 
 See [pounce-notify](https://git.causal.agency/pounce/about/pounce-notify.1) and [pounce-palaver](https://git.causal.agency/pounce/about/pounce-notify.1) for more information.
+
+### litterbox
+
+Run with the images tagged with `litterbox-*`.
+
+See [litterbox](https://git.causal.agency/litterbox/about/litterbox.1) for more information.

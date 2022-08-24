@@ -22,4 +22,4 @@ VOLUME /config
 
 EXPOSE 6697
 
-CMD ["pounce", "/config"]
+CMD ["pounce", "/config/pounce.conf"]
